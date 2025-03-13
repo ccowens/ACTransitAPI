@@ -1,0 +1,71 @@
+---
+title: "AC Transit Line 7 Stops and Political Boundaries"
+author: "Charley Cowens"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+params:
+  RefreshData: FALSE
+---
+
+```{r setup, include=FALSE}
+if(!require(knitr)) {install.packages("knitr"); library(knitr)}
+if(!require(dplyr)) {install.packages("dplyr"); library(dplyr)}
+if(!require(readxl)) {install.packages("readxl"); library(readxl)}
+if(!require(stringr)) {install.packages("stringr"); library(stringr)}
+opts_chunk$set(echo = FALSE)
+#if(!require(sf)) {install.packages("sf"); library(sf)}
+#if(!require(mapview)) {install.packages("mapview"); library(mapview)}
+```
+
+```{r efresh}
+if(params$RefreshData) source("get_stops.R")
+```
+
+
+```{r input}
+StopsData <- readRDS("StopsData.rds")
+Cities <- read_xlsx("ACTransitNorthWardsCities.xlsx")
+Reps <- read_xlsx("ACTransitNorthWardsReps.xlsx")
+```
+
+# Contact Info for Line 7 ACTransit Directors
+
+```{r contact}
+kable(Reps)
+```
+
+# Directors by City
+
+I count named unincorporated areas as cities.
+
+```{r cities}
+Cities %>% arrange(City) %>% kable()
+```
+
+# Number of Stops by City
+
+The total number of stops is `r nrow(StopsData)`.
+
+```{r by city}
+StopsData %>% 
+  group_by(City) %>% 
+  summarize(Stops = n()) %>% 
+  arrange(desc(Stops)) %>%
+  mutate(Percent = round((Stops / sum(Stops)) * 100)) %>% 
+  kable()
+```
+# Full List of Stops
+
+Sorted by geo coordinate latitude from north to south.
+
+```{r stops data list, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+StopsData %>% 
+  arrange(desc(Latitude)) %>% 
+  mutate(Stop = paste0(`Stop Number`, " - ", `Stop Name`),
+         Direction = str_sub(Direction, 1, 1)) %>% 
+  select(Stop, Direction, City) %>% 
+  left_join(Cities) %>% 
+  kable()
+```
