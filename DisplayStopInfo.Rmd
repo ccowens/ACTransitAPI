@@ -81,7 +81,7 @@ xlim(c(2, 4)) +
 # Adjust x limits to create the hole
 theme_void() +
 # Remove unnecessary plot elements 
-geom_text(aes(x=3.5, y=labelPosition, label=paste0(round(Percentage*100, 1), "%")), color = "black", size=4) + scale_fill_brewer(palette="Dark2") 
+geom_text(aes(x=3.5, y=labelPosition, label=paste0(round(Percentage*100, 1), "%")), color = "black", size=4) + scale_fill_brewer(palette="Accent") 
 #Choose color palette, you can change this. # Print the donut chart 
 print(donut_chart) 
 ```
