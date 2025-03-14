@@ -3,7 +3,6 @@ title: "AC Transit Line 7 Stops and Political Boundaries"
 author: "Charley Cowens"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document: default
 params:
   RefreshData: FALSE
@@ -27,12 +26,13 @@ opts_chunk$set(echo = FALSE)
 if(params$RefreshData) source("get_stops.R")
 ```
 
-
 ```{r input}
 StopsData <- readRDS("StopsData.rds")
 Cities <- read_xlsx("ACTransitNorthWardsCities.xlsx")
 Reps <- read_xlsx("ACTransitNorthWardsReps.xlsx")
 ```
+
+**This file is generated from an R Markdown file. Clicking on this [link](https://github.com/ccowens/ACTransitAPI) will take you to the repository for this project on Github that includes this file. Viewing this repository will display a more detailed explanation for how this web page is generated.**
 
 # Contact Info for Line 7 ACTransit Directors
 
@@ -85,7 +85,6 @@ geom_text(aes(x=3.5, y=labelPosition, label=paste0(round(Percentage*100, 1), "%"
 print(donut_chart) 
 ```
 
-
 # Full List of Stops
 
 Sorted by geo coordinate latitude from north to south.
@@ -110,6 +109,3 @@ StopsData %>%
     crs    = 4326
   ) %>% mapview(legend=FALSE)
 ```
-
-
-
