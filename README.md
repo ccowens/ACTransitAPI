@@ -9,6 +9,6 @@
 
     2.  Reads in **StopsData.rds**
 
-    3.  Uses a provided spreadsheet of ward assignments by city to associate directors with stops
+    3.  Uses 2 spreadsheets created by me contained in **ACTransitDirectorsFor7.zip** (**ACTransitNorthWardsCities.xlsx** and **ACTransitNorthWardsReps**) for display and to associate directors with stops for display
 
     4.  Produces **DisplayStopsInfo.html**, whose last version committed to Gihub can be accessed by a browser using this URL: <https://ccowens.github.io/ACTransitAPI//DisplayStopInfo.html>
