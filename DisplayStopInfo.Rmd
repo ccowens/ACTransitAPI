@@ -3,7 +3,8 @@ title: "AC Transit Line 7 Stops and Political Boundaries"
 author: "Charley Cowens"
 date: "`r Sys.Date()`"
 output:
-  html_document: default
+  html_document:
+    toc: TRUE
 params:
   RefreshData: FALSE
 ---
@@ -85,7 +86,7 @@ geom_text(aes(x=3.5, y=labelPosition, label=paste0(round(Percentage*100, 1), "%"
 print(donut_chart) 
 ```
 
-# Full List of Stops
+# Full List of Stops with Associated Director
 
 Sorted by geo coordinate latitude from north to south.
 
