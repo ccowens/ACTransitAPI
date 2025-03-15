@@ -40,7 +40,7 @@ get_stops <- function(line, direction) {
 
 
 # Setup -------------------------------------------------------------------
-myToken <- "859CB1FE286DD9FA62741422C7C50162"
+myToken <- Sys.getenv("MY_ACTRANSITAPI_TOKEN")
 baseUrl <- "https://api.actransit.org/transit/"
   
 myHandle <- new_handle()
